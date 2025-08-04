@@ -1,10 +1,8 @@
 package by.itacademy.lapitskaya;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CalculatorTest {
     private ICalculator calculator = new Calculator();
 
@@ -27,7 +25,7 @@ public class CalculatorTest {
     }
 
     @Test
-    @DisplayName("The sum of positive and negative numbers: 4 + 5 = 9")
+    @DisplayName("The sum of positive and negative numbers: -30 + 19 = 11")
     @Order(3)
     void testSumOfNegativeAndPositiveNumbers() {
         int expected = -11;
@@ -63,7 +61,7 @@ public class CalculatorTest {
     }
 
     @Test
-    @DisplayName("The sum of the numbers equal to the minimal value of int: 2147483547 + 100 = 2147483647")
+    @DisplayName("The sum of the numbers equal to the maximum value of int: 2147483547 + 100 = 2147483647")
     @Order(7)
     void testSumOfNumbersEqualToTheMaxValueOfInt() {
         int expected = 2147483647;
@@ -162,29 +160,47 @@ public class CalculatorTest {
     }
 
     @Test
-    @DisplayName("EXCEPTION: multiplication beyond int boundaries")
+    @DisplayName("The subtraction of two positive numbers: 100 - 10 = 90")
     @Order(18)
-    void testMultiplyException() {
+    void testSubtractionOfTwoPositiveNumbers() {
+        int expected = 90;
+        int actual = calculator.subtract(100, 10);
+        Assertions.assertEquals(expected, actual, String.format("The expected result of the subtraction is %d, but actual sum is %d", expected, actual));
+    }
+
+    @Test
+    @DisplayName("EXCEPTION: The subtraction of the numbers goes beyond the minimum limit of int")
+    @Order(19)
+    void testMinSubtractionException() {
         Assertions.assertThrows(ArithmeticException.class, () -> {
-            calculator.multiply(100000, 10000000);
+            calculator.subtract(-2147483647, 3);
         });
     }
 
     @Test
-    @DisplayName("This test of wrong sum should be failed")
-    @Order(19)
-    void testWrongSumOfTwoPositiveNumbers() {
-        int expected = 9;
-        int actual = calculator.sum(1, 5);
-        Assertions.assertEquals(expected, actual, String.format("The expected sum of the numbers is %d, but actual sum is %d", expected, actual));
+    @DisplayName("EXCEPTION: The subtraction of the numbers goes beyond the maximum limit of int")
+    @Order(20)
+    void testMaxSubtractionException() {
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            calculator.subtract(2147483645, -3);
+        });
     }
 
     @Test
-    @DisplayName("This test of wrong multiplication should be failed")
-    @Order(20)
-    void testWrongMultiplication() {
-        int expected = -90;
-        int actual = calculator.multiply(4, -5);
-        Assertions.assertEquals(expected, actual, String.format("The expected result of the multiplication is %d, but actual sum is %d", expected, actual));
+    @DisplayName("The division of two positive numbers: 30 / 10 = 3.0")
+    @Order(21)
+    void testDivisionOfTwoPositiveNumbers() {
+        double expected = 3.0;
+        double actual = calculator.divide(30, 10);
+        Assertions.assertEquals(expected, actual, ("The expected result of the division is 3.0"));
+    }
+
+    @Test
+    @DisplayName("EXCEPTION: The Dividing by 0")
+    @Order(22)
+    void testDivisionByZeroException() {
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            calculator.divide(18, 0);
+        });
     }
 }
