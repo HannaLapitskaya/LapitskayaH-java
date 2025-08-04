@@ -169,8 +169,26 @@ public class CalculatorTest {
     }
 
     @Test
-    @DisplayName("EXCEPTION: The subtraction of the numbers goes beyond the minimum limit of int")
+    @DisplayName("The subtraction of two negative numbers: -13 - (-7) = -6")
     @Order(19)
+    void testSubtractionOfTwoNegativeNumbers() {
+        int expected = -6;
+        int actual = calculator.subtract(-13, -7);
+        Assertions.assertEquals(expected, actual, String.format("The expected result of the subtraction is %d, but actual sum is %d", expected, actual));
+    }
+
+    @Test
+    @DisplayName("The subtraction of negative and positive numbers: -13 - 13 = -26")
+    @Order(20)
+    void testSubtractionOfNegativeAndPositiveNumber() {
+        int expected = -26;
+        int actual = calculator.subtract(-13, 13);
+        Assertions.assertEquals(expected, actual, String.format("The expected result of the subtraction is %d, but actual sum is %d", expected, actual));
+    }
+
+    @Test
+    @DisplayName("EXCEPTION: The subtraction of the numbers goes beyond the minimum limit of int")
+    @Order(21)
     void testMinSubtractionException() {
         Assertions.assertThrows(ArithmeticException.class, () -> {
             calculator.subtract(-2147483647, 3);
@@ -179,7 +197,7 @@ public class CalculatorTest {
 
     @Test
     @DisplayName("EXCEPTION: The subtraction of the numbers goes beyond the maximum limit of int")
-    @Order(20)
+    @Order(22)
     void testMaxSubtractionException() {
         Assertions.assertThrows(ArithmeticException.class, () -> {
             calculator.subtract(2147483645, -3);
@@ -188,7 +206,7 @@ public class CalculatorTest {
 
     @Test
     @DisplayName("The division of two positive numbers: 30 / 10 = 3.0")
-    @Order(21)
+    @Order(23)
     void testDivisionOfTwoPositiveNumbers() {
         double expected = 3.0;
         double actual = calculator.divide(30, 10);
@@ -196,8 +214,26 @@ public class CalculatorTest {
     }
 
     @Test
+    @DisplayName("The division of two negative numbers: -30 / (-6) = 5.0")
+    @Order(24)
+    void testDivisionOfTwoNegativeNumbers() {
+        double expected = 5.0;
+        double actual = calculator.divide(-30, -6);
+        Assertions.assertEquals(expected, actual, ("The expected result of the division is 5.0"));
+    }
+
+    @Test
+    @DisplayName("The subtraction of negative and positive numbers: -13 - 13 = -26")
+    @Order(25)
+    void testDivisionOfNegativeAndPositiveNumber() {
+        double expected = -1.0;
+        double actual = calculator.divide(-13, 13);
+        Assertions.assertEquals(expected, actual, String.format("The expected result of the division is -1"));
+    }
+
+    @Test
     @DisplayName("EXCEPTION: The Dividing by 0")
-    @Order(22)
+    @Order(26)
     void testDivisionByZeroException() {
         Assertions.assertThrows(ArithmeticException.class, () -> {
             calculator.divide(18, 0);
