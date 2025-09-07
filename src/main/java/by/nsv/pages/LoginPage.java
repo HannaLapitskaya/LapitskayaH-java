@@ -1,5 +1,6 @@
-package by.nsv;
+package by.nsv.pages;
 
+import by.nsv.singleton.Singleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -12,10 +13,11 @@ public class LoginPage {
     private final String PASSWORD_POPUP_ERROR_ID = "USER_PASSWORD_POPUP-error";
     private final String ALERT_DANGER_XPATH = "//div[@class='alert alert-danger']";
     private final String FORGOT_PULL_RIGHT_XPATH = "//a[@class='forgot pull-right']";
-    private final WebDriver driver;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
+    private WebDriver driver;
+
+    public LoginPage() {
+        this.driver = Singleton.getDriver();
     }
 
     public String getHeadTitleText() {

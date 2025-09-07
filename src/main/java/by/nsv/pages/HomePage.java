@@ -1,5 +1,6 @@
-package by.nsv;
+package by.nsv.pages;
 
+import by.nsv.singleton.Singleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -8,10 +9,11 @@ public class HomePage {
     private final String ACCEPT_COOKIE_ID = "paloma_cookie-accept";
     private final String PERSONAL_LINK_XPATH = "//div[@class ='wrap_icon inner-table-block']/a[@data-name = 'auth']";
     private final String CALL_HEADER_ID = "ClickCallHeader1";
-    private final WebDriver driver;
 
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
+    private WebDriver driver;
+
+    public HomePage() {
+        this.driver = Singleton.getDriver();
     }
 
     public void openSite() {

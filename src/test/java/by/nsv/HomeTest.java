@@ -1,16 +1,17 @@
 package by.nsv;
 
+import by.nsv.pages.HomePage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class HomeTest extends BaseTest {
+public class HomeTest {
     private HomePage homePage;
 
     @BeforeEach
     public void openHomePageClickCookieButton() {
-        homePage = new HomePage(driver);
+        homePage = new HomePage();
         homePage.openSite();
         homePage.clickAcceptCookieButton();
     }
