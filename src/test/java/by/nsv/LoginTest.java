@@ -1,21 +1,15 @@
 package by.nsv;
 
-import by.nsv.pages.HomePage;
 import by.nsv.pages.LoginPage;
-import by.nsv.singleton.Singleton;
 import org.junit.jupiter.api.*;
 
-public class LoginTest {
+public class LoginTest extends BaseTest {
     private LoginPage loginPage;
-    private HomePage homePage;
 
     @BeforeEach
     public void openHomePageClickCookieButton() {
         loginPage = new LoginPage();
-        homePage = new HomePage();
-        homePage.openSite();
-        homePage.clickAcceptCookieButton();
-        homePage.clickPersonalLinkButton();
+        loginPage.clickPersonalLinkButton();
     }
 
     @Test
@@ -71,10 +65,5 @@ public class LoginTest {
     @DisplayName("Presence of the 'Забыли пароль?' text")
     public void test7() {
         Assertions.assertEquals("Забыли пароль?", loginPage.getForgotPullRightText());
-    }
-
-    @AfterEach
-    public void tearDown() {
-        Singleton.quit();
     }
 }

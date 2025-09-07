@@ -1,20 +1,10 @@
 package by.nsv;
 
-import by.nsv.pages.HomePage;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class HomeTest {
-    private HomePage homePage;
-
-    @BeforeEach
-    public void openHomePageClickCookieButton() {
-        homePage = new HomePage();
-        homePage.openSite();
-        homePage.clickAcceptCookieButton();
-    }
+public class HomeTest extends BaseTest {
 
     @Test
     @DisplayName("Presence of a phone number for communication in the header")

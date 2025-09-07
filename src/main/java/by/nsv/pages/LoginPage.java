@@ -1,55 +1,55 @@
 package by.nsv.pages;
 
-import by.nsv.singleton.Singleton;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import by.nsv.singleton.WebDriverSingleton;
 
 public class LoginPage {
-    public final String HEAD_FORM_TITLE_XPATH = "//div[@class ='form_head']/h2";
-    private final String LOGIN_POPUP_ID = "USER_LOGIN_POPUP";
-    private final String PASSWORD_POPUP_ID = "USER_PASSWORD_POPUP";
-    private final String LOGIN_BUTTON_Name = "Login";
-    private final String LOGIN_POPUP_ERROR_ID = "USER_LOGIN_POPUP-error";
-    private final String PASSWORD_POPUP_ERROR_ID = "USER_PASSWORD_POPUP-error";
-    private final String ALERT_DANGER_XPATH = "//div[@class='alert alert-danger']";
-    private final String FORGOT_PULL_RIGHT_XPATH = "//a[@class='forgot pull-right']";
-
-    private WebDriver driver;
+    public final String HEAD_FORM_TITLE = "//div[@class ='form_head']/h2";
+    private final String LOGIN_POPUP = "//input[@id='USER_LOGIN_POPUP']";
+    private final String PASSWORD_POPUP = "//input[@id='USER_PASSWORD_POPUP']";
+    private final String LOGIN_BUTTON = "//button[@name='Login']";
+    private final String LOGIN_POPUP_ERROR = "//label[@id='USER_LOGIN_POPUP-error']";
+    private final String PASSWORD_POPUP_ERROR = "//label[@id='USER_PASSWORD_POPUP-error']";
+    private final String ALERT_DANGER = "//div[@class='alert alert-danger']";
+    private final String FORGOT_PULL_RIGHT = "//a[@class='forgot pull-right']";
+    private final String PERSONAL_LINK = "//div[@class ='wrap_icon inner-table-block']/a[@data-name = 'auth']";
 
     public LoginPage() {
-        this.driver = Singleton.getDriver();
+    }
+
+    public void clickPersonalLinkButton() {
+        WebDriverSingleton.clickElement(PERSONAL_LINK);
     }
 
     public String getHeadTitleText() {
-        return driver.findElement(By.xpath(HEAD_FORM_TITLE_XPATH)).getText();
+        return WebDriverSingleton.getTextFromElement(HEAD_FORM_TITLE);
     }
 
     public void sendKeysLogin(String login) {
-        driver.findElement(By.id(LOGIN_POPUP_ID)).sendKeys(login);
+        WebDriverSingleton.sendKeys(LOGIN_POPUP, login);
     }
 
     public void sendKeysPassword(String password) {
-        driver.findElement(By.id(PASSWORD_POPUP_ID)).sendKeys(password);
+        WebDriverSingleton.sendKeys(PASSWORD_POPUP, password);
     }
 
     public void clickLoginButton() {
-        driver.findElement(By.name(LOGIN_BUTTON_Name)).click();
+        WebDriverSingleton.clickElement(LOGIN_BUTTON);
     }
 
     public String getLoginPopupErrorText() {
-        return driver.findElement(By.id(LOGIN_POPUP_ERROR_ID)).getText();
+        return WebDriverSingleton.getTextFromElement(LOGIN_POPUP_ERROR);
     }
 
     public String getPasswordPopupErrorText() {
-        return driver.findElement(By.id(PASSWORD_POPUP_ERROR_ID)).getText();
+        return WebDriverSingleton.getTextFromElement(PASSWORD_POPUP_ERROR);
     }
 
     public String getAlertDangerText() {
-        return driver.findElement(By.xpath(ALERT_DANGER_XPATH)).getText();
+        return WebDriverSingleton.getTextFromElement(ALERT_DANGER);
     }
 
     public String getForgotPullRightText() {
-        return driver.findElement(By.xpath(FORGOT_PULL_RIGHT_XPATH)).getText();
+        return WebDriverSingleton.getTextFromElement(FORGOT_PULL_RIGHT);
     }
 
     public void fillLoginForm(String login, String password) {
