@@ -1,20 +1,10 @@
 package by.belavia;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LoginTest extends BaseTest {
-    LoginPage loginPage;
-
-    @BeforeEach
-    public void openHomePageClickLinkAccount() {
-        loginPage = new LoginPage(driver);
-
-        loginPage.openSite();
-        loginPage.clickLinkAccount();
-    }
 
     @Test
     @DisplayName("Checking the text on the form")
